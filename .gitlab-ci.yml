@@ -1,0 +1,43 @@
+stages:
+  - stop-api-service
+  - pull-project-main
+  - dotnet-publish
+  - start-api-service
+
+# This job runs ...
+stop-api-service-job:
+    stage: stop-api-service
+
+    tags:
+    - uof-apiservice
+    script:
+    - cd %systemroot%\system32\inetsrv\
+    - appcmd stop site /site.name:"edcore_web"
+    - appcmd stop apppool /apppool.name:"edcore_web"
+
+# This job runs ...
+pull-project-main-job:
+    stage: pull-project-main
+
+    script:
+    - cd C:\inetpub\wwwroot\ef_core
+    - git pull origin main
+    - echo "Code coverage is 90%"
+
+# This job also runs ...
+dotnet-publish-job:
+    stage: dotnet-publish
+
+    script:
+    - dotnet build
+    - rm -rf ./publish
+    - dotnet publish -c Release -o ./publish
+
+start-api-service:
+    stage: start-api-service
+
+    script:
+    - cd %systemroot%\system32\inetsrv\
+    - appcmd start apppool /apppool.name:"edcore_web"
+    - appcmd start site /site.name:"edcore_web"
+    
