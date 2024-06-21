@@ -21,8 +21,8 @@ pull-project-main-job:
 
     script:
     - cd C:\inetpub\wwwroot\ef_core
+    - git checkout main
     - git pull origin main
-    - echo "Code coverage is 90%"
 
 # This job also runs ...
 dotnet-publish-job:
