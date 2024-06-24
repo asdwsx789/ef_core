@@ -11,9 +11,8 @@ stop-api-service-job:
     tags:
     - uof-apiservice
     script:
-    - cd C:\Windows\System32\inetsrv
-    - appcmd stop site /site.name:"edcore_web"
-    - appcmd stop apppool /apppool.name:"edcore_web"
+    - C:\Windows\System32\inetsrv\appcmd stop site /site.name:"edcore_web"
+    - C:\Windows\System32\inetsrv\appcmd stop apppool /apppool.name:"edcore_web"
 
 # This job runs ...
 pull-project-main-job:
@@ -37,7 +36,6 @@ start-api-service:
     stage: start-api-service
 
     script:
-    - cd C:\Windows\System32\inetsrv
-    - appcmd start apppool /apppool.name:"edcore_web"
-    - appcmd start site /site.name:"edcore_web"
+    - C:\Windows\System32\inetsrv\appcmd start apppool /apppool.name:"edcore_web"
+    - C:\Windows\System32\inetsrv\appcmd start site /site.name:"edcore_web"
     
