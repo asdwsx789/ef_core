@@ -28,8 +28,9 @@ dotnet-publish-job:
     stage: dotnet-publish
 
     script:
+    - cd C:\inetpub\wwwroot\ef_core
     - dotnet build
-    - rm -rf ./publish
+    - Remove-Item -Recurse -Force ./publish
     - dotnet publish -c Release -o ./publish
 
 start-api-service:
