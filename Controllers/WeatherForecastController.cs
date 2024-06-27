@@ -33,6 +33,6 @@ public class WeatherForecastController : ControllerBase
     [HttpGet("GetString")]
     public IActionResult GetString()
     {
-        return Ok("hello world_240627");
+        return Ok("hello world_240627ver2");
     }
 }
